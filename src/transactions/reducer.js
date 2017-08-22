@@ -54,49 +54,51 @@ export const defaultRegisterTransaction = {
 
 function reducer(state, action) {
     const actionTypeFrags = action.type.split('_');
-    const updateTransaction = { transactionId: action.id };
-    if (action.payload) {
-        for (let propKey in action.payload) {
-            updateTransaction[propKey] = action.payload[propKey];
+    if (actionTypeFrags[1] === 'TRANSACTION') {
+        const updateTransaction = { transactionId: action.id };
+        if (action.payload) {
+            for (let propKey in action.payload) {
+                updateTransaction[propKey] = action.payload[propKey];
+            }
         }
-    }
-    let defaultTransaction = {};
-    if (actionTypeFrags.length >= 3) {
-        switch (actionTypeFrags[2]) {
-            case 'INSERT':
-                defaultTransaction = defaultInsertTransaction;
+        let defaultTransaction = {};
+        if (actionTypeFrags.length >= 3) {
+            switch (actionTypeFrags[2]) {
+                case 'INSERT':
+                    defaultTransaction = defaultInsertTransaction;
+                    break;
+                case 'UPDATE':
+                    defaultTransaction = defaultUpdateTransaction;
+                    break;
+                case 'DELETE':
+                    defaultTransaction = defaultDeleteTransaction;
+                    break;
+                case 'LOGIN':
+                    defaultTransaction = defaultLoginTransaction;
+                    break;
+                case 'REGISTER':
+                    defaultTransaction = defaultRegisterTransaction;
+                    break;
+            }
+        }
+        let updateState = null;
+        switch (actionTypeFrags[0]) {
+            case 'ADD':
+            case 'SET':
+                updateState = assign({}, state);
+                updateState[action.id] = assign({}, defaultTransaction, updateTransaction);
+                state = assign({}, state, updateState);
                 break;
             case 'UPDATE':
-                defaultTransaction = defaultUpdateTransaction;
+                updateState = assign({}, state);
+                updateState[action.id] = assign({}, state[action.id], updateTransaction);
+                state = assign({}, state, updateState);
                 break;
-            case 'DELETE':
-                defaultTransaction = defaultDeleteTransaction;
-                break;
-            case 'LOGIN':
-                defaultTransaction = defaultLoginTransaction;
-                break;
-            case 'REGISTER':
-                defaultTransaction = defaultRegisterTransaction;
+            case 'REMOVE':
+                state = assign({}, state);
+                delete state[action.id];
                 break;
         }
-    }
-    let updateState = null;
-    switch (actionTypeFrags[0]) {
-        case 'ADD':
-        case 'SET':
-            updateState = assign({}, state);
-            updateState[action.id] = assign({}, defaultTransaction, updateTransaction);
-            state = assign({}, state, updateState);
-            break;
-        case 'UPDATE':
-            updateState = assign({}, state);
-            updateState[action.id] = assign({}, state[action.id], updateTransaction);
-            state = assign({}, state, updateState);
-            break;
-        case 'REMOVE':
-            state = assign({}, state);
-            delete state[action.id];
-            break;
     }
     return state;
 };
