@@ -15,8 +15,7 @@ export default {
                     offset: loadingMeta.offset,
                     count: loadingMeta.count,
                     pageSize: loadingMeta.pageSize,
-                    totalCount: 0,
-                    errors: []
+                    totalCount: 0
                 },
                 itemsIds: [];
             }
@@ -39,8 +38,7 @@ export default {
                     offset: loadingMeta.offset,
                     count: loadingMeta.count,
                     pageSize: loadingMeta.pageSize,
-                    totalCount: loadingMeta.totalCount,
-                    errors: []
+                    totalCount: loadingMeta.totalCount
                 },
                 itemsIds: itemsIds;
             }
