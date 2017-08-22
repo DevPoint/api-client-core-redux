@@ -61,22 +61,24 @@ function reducer(state, action) {
 		}
 	}
 	let defaultTransaction = {};
-	switch (actionTypeFrags[2]) {
-		case 'INSERT':
-			defaultTransaction = defaultInsertTransaction;
-			break;
-		case 'UPDATE':
-			defaultTransaction = defaultUpdateTransaction;
-			break;
-		case 'DELETE':
-			defaultTransaction = defaultDeleteTransaction;
-			break;
-		case 'LOGIN':
-			defaultTransaction = defaultLoginTransaction;
-			break;
-		case 'REGISTER':
-			defaultTransaction = defaultRegisterTransaction;
-			break;
+	if (actionTypeFrags.length >= 3) {
+		switch (actionTypeFrags[2]) {
+			case 'INSERT':
+				defaultTransaction = defaultInsertTransaction;
+				break;
+			case 'UPDATE':
+				defaultTransaction = defaultUpdateTransaction;
+				break;
+			case 'DELETE':
+				defaultTransaction = defaultDeleteTransaction;
+				break;
+			case 'LOGIN':
+				defaultTransaction = defaultLoginTransaction;
+				break;
+			case 'REGISTER':
+				defaultTransaction = defaultRegisterTransaction;
+				break;
+		}
 	}
 	let newState = null;
 	switch (actionTypeFrags[0]) {
