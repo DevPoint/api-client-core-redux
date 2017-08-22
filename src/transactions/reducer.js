@@ -11,6 +11,8 @@ const _arrayProps = [
 
 export const defaultInsertTransaction = {
     transactionId: null,
+    itemType: '',
+    type: 'insert',
     ready: false,
     processing: true,
     failed: false,
@@ -22,6 +24,8 @@ export const defaultInsertTransaction = {
 
 export const defaultUpdateTransaction = {
     transactionId: null,
+    itemType: '',
+    type: 'update',
     ready: false,
     processing: true,
     failed: false,
@@ -33,6 +37,8 @@ export const defaultUpdateTransaction = {
 
 export const defaultDeleteTransaction = {
     transactionId: null,
+    itemType: '',
+    type: 'delete',
     ready: false,
     processing: true,
     failed: false,
@@ -42,6 +48,8 @@ export const defaultDeleteTransaction = {
 
 export const defaultLoginTransaction = {
     transactionId: null,
+    itemType: '',
+    type: 'login',
     ready: false,
     processing: true,
     failed: false,
@@ -53,6 +61,8 @@ export const defaultLoginTransaction = {
 
 export const defaultRegisterTransaction = {
     transactionId: null,
+    itemType: '',
+    type: 'register',
     ready: false,
     processing: true,
     failed: false,
