@@ -23,18 +23,18 @@ const reducer = (state, action) => {
 				views: viewsReducer(state.views, action)
 			});
 		}
-		if (actionTypeFrags.length == 1) {
-			switch (actionTypeFrags[0]) {
-				case 'ADD':
-					state = assign({}, defaultState);
-					break;
-				case 'SET':
-					state = assign({}, defaultState, action.payload);
-					break;
-				case 'UPDATE':
-					state = assign({}, state, action.payload);
-					break;
-			}
+	}
+	else if (actionTypeFrags.length == 1) {
+		switch (actionTypeFrags[0]) {
+			case 'ADD':
+				state = assign({}, defaultState);
+				break;
+			case 'SET':
+				state = assign({}, defaultState, action.payload);
+				break;
+			case 'UPDATE':
+				state = assign({}, state, action.payload);
+				break;
 		}
 	}
 	return state;
