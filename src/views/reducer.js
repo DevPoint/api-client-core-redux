@@ -1,6 +1,14 @@
 
 const assign = Object.assign;
 
+const _objectProps = [
+    'loadingMeta', 'validationErrors'
+];
+
+const _arrayProps = [
+    'itemsIds', 'errors'
+];
+
 export const defaultView = {
     viewId: null,
     ready: true,
@@ -13,11 +21,10 @@ export const defaultView = {
         count: 0,
         pageSize: 0,
         totalCount: 0,
-        errors: []
     },
     itemsIds: itemsIds;
     errors: [],
-    validationErrors: null
+    validationErrors: {}
 };
 
 const reducer = (state, action) => {
@@ -26,10 +33,10 @@ const reducer = (state, action) => {
         const updateView = { viewId: action.id };
         if (action.payload) {
             for (let propKey in action.payload) {
-                if (propKey === 'loadingMeta' || propKey === 'validationErrors') {
+                if (_objectProps.indexOf(propKey) >= 0) {
                     updateView[propKey] = assign({}, action.payload[propKey]);
                 }
-                else if (propKey === 'errors' || propKey === 'itemsIds') {
+                else if (_arrayProps.indexOf(propKey) >= 0) {
                     updateView[propKey] = action.payload[propKey].slice(0);
                 }
                 else {

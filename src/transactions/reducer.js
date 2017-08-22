@@ -1,6 +1,14 @@
 
 const assign = Object.assign;
 
+const _objectProps = [
+    'credentials', 'data', 'validationErrors'
+];
+
+const _arrayProps = [
+    'errors'
+];
+
 export const defaultInsertTransaction = {
     transactionId: null,
     ready: false,
@@ -57,10 +65,10 @@ function reducer(state, action) {
         const updateTransaction = { transactionId: action.id };
         if (action.payload) {
             for (let propKey in action.payload) {
-                if (propKey === 'credentials' || propKey === 'data' || propKey === 'validationErrors') {
+                if (_objectProps.indexOf(propKey) >= 0) {
                     updateTransaction[propKey] = assign({}, action.payload[propKey]);
                 }
-                else if (propKey === 'errors') {
+                else if (_arrayProps.indexOf(propKey) >= 0) {
                     updateTransaction[propKey] = action.payload[propKey].slice(0);
                 }
                 else {
