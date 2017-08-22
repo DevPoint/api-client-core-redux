@@ -1,6 +1,10 @@
 
 export default {
 
+    /*
+     * Transaction INSERT actions
+     */
+
     insertStart: function(nameSpace, transactionId, itemType, credentials) {
         const nameSpacePrefix = (nameSpace) ? '_' + nameSpace : '';
         return {
@@ -19,7 +23,6 @@ export default {
             }
         };
     },
-
 
     insertReady: function(nameSpace, transactionId, itemId) {
         const nameSpacePrefix = (nameSpace) ? '_' + nameSpace : '';
@@ -52,6 +55,10 @@ export default {
         };
     },
 
+    /*
+     * Transaction UPDATE actions
+     */
+
     updateStart: function(nameSpace, transactionId, itemType, itemId, credentials) {
         const nameSpacePrefix = (nameSpace) ? '_' + nameSpace : '';
         return {
@@ -70,7 +77,6 @@ export default {
             }
         };
     },
-
 
     updateReady: function(nameSpace, transactionId) {
         const nameSpacePrefix = (nameSpace) ? '_' + nameSpace : '';
@@ -101,6 +107,10 @@ export default {
             }
         };
     },
+
+    /*
+     * Transaction DELETE actions
+     */
 
     deleteStart: function(nameSpace, transactionId, itemType, itemId) {
         const nameSpacePrefix = (nameSpace) ? '_' + nameSpace : '';
@@ -146,6 +156,10 @@ export default {
             }
         };
     },
+
+    /*
+     * Transaction LOGIN actions
+     */
 
     loginStart: function(nameSpace, transactionId, itemType, credentials) {
         const nameSpacePrefix = (nameSpace) ? '_' + nameSpace : '';
@@ -197,6 +211,10 @@ export default {
             }
         };
     },
+
+    /*
+     * Transaction REGISTER actions
+     */
 
     registerStart: function(nameSpace, transactionId, itemType) {
         const nameSpacePrefix = (nameSpace) ? '_' + nameSpace : '';
