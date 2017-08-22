@@ -48,7 +48,6 @@ export const defaultRegisterTransaction = {
     ready: false,
     processing: true,
     failed: false,
-    token: '',
     errors: [],
 };
 
@@ -58,7 +57,15 @@ function reducer(state, action) {
         const updateTransaction = { transactionId: action.id };
         if (action.payload) {
             for (let propKey in action.payload) {
-                updateTransaction[propKey] = action.payload[propKey];
+                if (propKey === 'credentials' || propKey === 'data' || propKey === 'validationErrors') {
+                    updateTransaction[propKey] = assign({}, action.payload[propKey]);
+                }
+                else if (propKey === 'errors') {
+                    updateTransaction[propKey] = action.payload[propKey].slice(0);
+                }
+                else {
+                    updateTransaction[propKey] = action.payload[propKey];
+                }
             }
         }
         let defaultTransaction = {};
