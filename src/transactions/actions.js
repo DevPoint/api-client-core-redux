@@ -1,12 +1,14 @@
 
 export default {
 
-    insertStart: function(nameSpace, transactionId, credentials) {
+    insertStart: function(nameSpace, transactionId, itemType, credentials) {
         const nameSpacePrefix = (nameSpace) ? '_' + nameSpace : '';
         return {
-            type: nameSpacePrefix . 'UPDATE_TRANSACTION_INSERT',
+            type: nameSpacePrefix . 'SET_TRANSACTION_INSERT',
             id: transactionId,
             payload: {
+                itemType: itemType,
+                type: 'insert',
                 ready: false,
                 processing: true,
                 failed: false,
@@ -53,9 +55,11 @@ export default {
     updateStart: function(nameSpace, transactionId, itemId, credentials) {
         const nameSpacePrefix = (nameSpace) ? '_' + nameSpace : '';
         return {
-            type: nameSpacePrefix . 'UPDATE_TRANSACTION_UPDATE',
+            type: nameSpacePrefix . 'SET_TRANSACTION_UPDATE',
             id: transactionId,
             payload: {
+                itemType: itemType,
+                type: 'update',
                 ready: false,
                 processing: true,
                 failed: false,
@@ -101,9 +105,11 @@ export default {
     deleteStart: function(nameSpace, transactionId, itemId) {
         const nameSpacePrefix = (nameSpace) ? '_' + nameSpace : '';
         return {
-            type: nameSpacePrefix . 'UPDATE_TRANSACTION_DELETE',
+            type: nameSpacePrefix . 'SET_TRANSACTION_DELETE',
             id: transactionId,
             payload: {
+                itemType: itemType,
+                type: 'delete',
                 ready: false,
                 processing: true,
                 failed: false,
@@ -144,9 +150,11 @@ export default {
     loginStart: function(nameSpace, transactionId, credentials) {
         const nameSpacePrefix = (nameSpace) ? '_' + nameSpace : '';
         return {
-            type: nameSpacePrefix . 'UPDATE_TRANSACTION_LOGIN',
+            type: nameSpacePrefix . 'SET_TRANSACTION_LOGIN',
             id: transactionId,
             payload: {
+                itemType: itemType,
+                type: 'login',
                 ready: false,
                 processing: true,
                 failed: false,
@@ -193,9 +201,11 @@ export default {
     registerStart: function(nameSpace, transactionId) {
         const nameSpacePrefix = (nameSpace) ? '_' + nameSpace : '';
         return {
-            type: nameSpacePrefix . 'UPDATE_TRANSACTION_REGISTER',
+            type: nameSpacePrefix . 'REGISTER_TRANSACTION_REGISTER',
             id: transactionId,
             payload: {
+                itemType: itemType,
+                type: 'register',
                 ready: false,
                 processing: true,
                 failed: false,
