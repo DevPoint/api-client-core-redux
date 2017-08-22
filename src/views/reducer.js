@@ -11,6 +11,7 @@ const _arrayProps = [
 
 export const defaultView = {
     viewId: null,
+    itemType: '',
     ready: true,
     outdated: false,
     loading: false,
