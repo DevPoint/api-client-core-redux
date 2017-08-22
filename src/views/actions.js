@@ -1,12 +1,13 @@
 
 export default {
 
-    loadingStart: function(nameSpace, viewId, loadingMeta) {
+    loadingStart: function(nameSpace, viewId, itemType, loadingMeta) {
         const nameSpacePrefix = (nameSpace) ? '_' + nameSpace : '';
         return {
-            type: nameSpacePrefix . 'UPDATE_VIEW',
+            type: nameSpacePrefix . 'SET_VIEW',
             id: viewId,
             payload: {
+                itemType: itemType,
                 ready: false,
                 loading: true,
                 loadingFailed: false,
