@@ -30,8 +30,6 @@ const reducer = (state, action) => {
     else if (actionTypeFrags.length == 1) {
         switch (actionTypeFrags[0]) {
             case 'ADD':
-                state = defaultState;
-                break;
             case 'SET':
                 state = assign({}, defaultState, action.payload);
                 break;
