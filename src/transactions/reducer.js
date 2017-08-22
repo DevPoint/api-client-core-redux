@@ -69,7 +69,12 @@ export const defaultRegisterTransaction = {
     errors: []
 };
 
+export const defaultState = {};
+
 function reducer(state, action) {
+    if (typeof state === 'undefined') {
+        state = defaultState;
+    } 
     const actionTypeFrags = action.type.split('_');
     if (actionTypeFrags[1] === 'TRANSACTION') {
         const updateTransaction = { transactionId: action.id };

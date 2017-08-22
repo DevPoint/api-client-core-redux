@@ -28,7 +28,12 @@ export const defaultView = {
     validationErrors: {}
 };
 
+export const defaultState = {};
+
 const reducer = (state, action) => {
+    if (typeof state === 'undefined') {
+        state = defaultState;
+    } 
     const actionTypeFrags = action.type.split('_');
     if (actionTypeFrags[1] === 'VIEW') {
         const updateView = { viewId: action.id };
@@ -49,17 +54,17 @@ const reducer = (state, action) => {
         switch (actionTypeFrags[0]) {
             case 'ADD':
             case 'SET':
-                updateState = assign({}, state);
+                updateState = assign({}, state ? state : defaultState);
                 updateState[action.id] = assign({}, defaultView, updateView);
                 state = assign({}, state, updateState);
                 break;
             case 'UPDATE':
-                updateState = assign({}, state);
+                updateState = assign({}, state, state ? state : defaultView);
                 updateState[action.id] = assign({}, state[action.id], updateView);
                 state = assign({}, state, updateState);
                 break;
             case 'REMOVE':
-                state = assign({}, state);
+                state = assign({}, state, state ? state : defaultState);
                 delete state[action.id];
                 break;
         }
