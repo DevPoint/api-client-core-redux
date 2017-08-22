@@ -56,7 +56,7 @@ export const defaultRegisterTransaction = {
     ready: false,
     processing: true,
     failed: false,
-    errors: [],
+    errors: []
 };
 
 function reducer(state, action) {

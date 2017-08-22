@@ -108,7 +108,7 @@ export default {
                 processing: true,
                 failed: false,
                 itemId: itemId,
-                errors: [],
+                errors: []
             }
         };
     },
@@ -122,7 +122,7 @@ export default {
                 ready: true,
                 processing: false,
                 failed: false,
-                errors: [],
+                errors: []
             }
         };
     },
@@ -136,7 +136,7 @@ export default {
                 ready: true,
                 processing: false,
                 failed: true,
-                errors: errors,
+                errors: errors
             }
         };
     },
