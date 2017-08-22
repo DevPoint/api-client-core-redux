@@ -36,22 +36,18 @@ const reducer = (state, action) => {
             }
         }
     }
-    let newState = null;
+    let updateState = null;
     switch (actionTypeFrags[0]) {
         case 'ADD':
-            newState = assign({}, state);
-            newState[action.id] = defaultView;
-            state = assign({}, state, newState);
-            break;
         case 'SET':
-            newState = assign({}, state);
-            newState[action.id] = assign({}, defaultView, actionView);
-            state = assign({}, state, newState);
+            updateState = assign({}, state);
+            updateState[action.id] = assign({}, defaultView, updateView);
+            state = assign({}, state, updateState);
             break;
         case 'UPDATE':
-            newState = assign({}, state);
-            newState[action.id] = assign({}, state[action.id], actionView);
-            state = assign({}, state, newState);
+            updateState = assign({}, state);
+            updateState[action.id] = assign({}, state[action.id], updateView);
+            state = assign({}, state, updateState);
             break;
         case 'REMOVE':
             state = assign({}, state);

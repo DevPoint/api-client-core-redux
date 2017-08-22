@@ -80,22 +80,18 @@ function reducer(state, action) {
                 break;
         }
     }
-    let newState = null;
+    let updateState = null;
     switch (actionTypeFrags[0]) {
         case 'ADD':
-            newState = assign({}, state);
-            newState[action.id] = defaultTransaction;
-            state = assign({}, state, newState);
-            break;
         case 'SET':
-            newState = assign({}, state);
-            newState[action.id] = assign({}, defaultTransaction, actionTransaction);
-            state = assign({}, state, newState);
+            updateState = assign({}, state);
+            updateState[action.id] = assign({}, defaultTransaction, updateTransaction);
+            state = assign({}, state, updateState);
             break;
         case 'UPDATE':
-            newState = assign({}, state);
-            newState[action.id] = assign({}, state[action.id], actionTransaction);
-            state = assign({}, state, newState);
+            updateState = assign({}, state);
+            updateState[action.id] = assign({}, state[action.id], updateTransaction);
+            state = assign({}, state, updateState);
             break;
         case 'REMOVE':
             state = assign({}, state);
