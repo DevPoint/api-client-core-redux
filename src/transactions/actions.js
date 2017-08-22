@@ -52,7 +52,7 @@ export default {
         };
     },
 
-    updateStart: function(nameSpace, transactionId, itemId, credentials) {
+    updateStart: function(nameSpace, transactionId, itemType, itemId, credentials) {
         const nameSpacePrefix = (nameSpace) ? '_' + nameSpace : '';
         return {
             type: nameSpacePrefix . 'SET_TRANSACTION_UPDATE',
@@ -102,7 +102,7 @@ export default {
         };
     },
 
-    deleteStart: function(nameSpace, transactionId, itemId) {
+    deleteStart: function(nameSpace, transactionId, itemType, itemId) {
         const nameSpacePrefix = (nameSpace) ? '_' + nameSpace : '';
         return {
             type: nameSpacePrefix . 'SET_TRANSACTION_DELETE',
@@ -147,7 +147,7 @@ export default {
         };
     },
 
-    loginStart: function(nameSpace, transactionId, credentials) {
+    loginStart: function(nameSpace, transactionId, itemType, credentials) {
         const nameSpacePrefix = (nameSpace) ? '_' + nameSpace : '';
         return {
             type: nameSpacePrefix . 'SET_TRANSACTION_LOGIN',
@@ -198,7 +198,7 @@ export default {
         };
     },
 
-    registerStart: function(nameSpace, transactionId) {
+    registerStart: function(nameSpace, transactionId, itemType) {
         const nameSpacePrefix = (nameSpace) ? '_' + nameSpace : '';
         return {
             type: nameSpacePrefix . 'REGISTER_TRANSACTION_REGISTER',
