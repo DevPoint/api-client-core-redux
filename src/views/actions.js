@@ -57,7 +57,7 @@ export default {
             id: viewId,
             payload: {
                 ready: true,
-                processing: false,
+                loading: false,
                 failed: true,
                 errors: errors,
                 validationErrors: validationErrors
