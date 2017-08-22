@@ -11,6 +11,9 @@ const defaultState = {
 };
 
 const reducer = (state, action) => {
+    if (typeof state === 'undefined') {
+        state = defaultState;
+    } 
     const actionTypeFrags = action.type.split('_');
     if (actionTypeFrags.length >= 2) {
         if (actionTypeFrags[1] === 'TRANSACTION') {
