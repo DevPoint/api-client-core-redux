@@ -66,6 +66,7 @@ export const defaultRegisterTransaction = {
     ready: false,
     processing: true,
     failed: false,
+    userId: null,
     errors: []
 };
 

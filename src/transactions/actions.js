@@ -233,7 +233,7 @@ export default {
         };
     },
 
-    registerReady: function(nameSpace, transactionId) {
+    registerReady: function(nameSpace, transactionId, userId) {
         const nameSpacePrefix = (nameSpace) ? '_' + nameSpace : '';
         return {
             type: nameSpacePrefix . 'UPDATE_TRANSACTION_REGISTER',
@@ -242,6 +242,7 @@ export default {
                 ready: true,
                 processing: false,
                 failed: false,
+                userId: userId,
                 errors: '',
             }
         };
