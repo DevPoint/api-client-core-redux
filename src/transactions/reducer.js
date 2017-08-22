@@ -17,7 +17,7 @@ export const defaultInsertTransaction = {
     itemId: null,
     data: {},
     errors: [],
-    validationErrors: null
+    validationErrors: {}
 };
 
 export const defaultUpdateTransaction = {
@@ -28,7 +28,7 @@ export const defaultUpdateTransaction = {
     itemId: null,
     data: {},
     errors: [],
-    validationErrors: null
+    validationErrors: {}
 };
 
 export const defaultDeleteTransaction = {
@@ -48,7 +48,7 @@ export const defaultLoginTransaction = {
     userId: null,
     credentials: {},
     errors: [],
-    validationErrors: null
+    validationErrors: {}
 };
 
 export const defaultRegisterTransaction = {

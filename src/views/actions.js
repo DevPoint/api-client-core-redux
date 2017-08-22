@@ -17,7 +17,9 @@ export default {
                     pageSize: loadingMeta.pageSize,
                     totalCount: 0
                 },
-                itemsIds: [];
+                itemsIds: [],
+                errors: [],
+                validationErrors: {}
             }
         };
     },
@@ -41,6 +43,8 @@ export default {
                     totalCount: loadingMeta.totalCount
                 },
                 itemsIds: itemsIds;
+                errors: [],
+                validationErrors: {}
             }
         };
     },
@@ -59,5 +63,4 @@ export default {
             }
         };
     },
-
 };
