@@ -13,7 +13,7 @@ export default {
                 itemId: null,
                 credentials: credentials,
                 errors: [],
-                validationErrors: null
+                validationErrors: {}
             }
         };
     },
@@ -30,7 +30,7 @@ export default {
                 failed: false,
                 itemId: itemId,
                 errors: [],
-                validationErrors: null
+                validationErrors: {}
             }
         };
     },
@@ -62,7 +62,7 @@ export default {
                 itemId: itemId,
                 credentials: credentials,
                 errors: [],
-                validationErrors: null
+                validationErrors: {}
             }
         };
     },
@@ -78,7 +78,7 @@ export default {
                 processing: false,
                 failed: false,
                 errors: [],
-                validationErrors: null
+                validationErrors: {}
             }
         };
     },
@@ -153,7 +153,7 @@ export default {
                 userId: null,
                 credentials: credentials,
                 errors: [],
-                validationErrors: null
+                validationErrors: {}
             }
         };
     },
@@ -170,7 +170,7 @@ export default {
                 failed: false,
                 userId: userId,
                 errors: [],
-                validationErrors: null
+                validationErrors: {}
             }
         };
     },
