@@ -54,7 +54,6 @@ export const defaultRegisterTransaction = {
 
 function reducer(state, action) {
 	const actionTypeFrags = action.type.split('_');
-	const newState = assign({}, state);
 	const updateTransaction = { transactionId: action.id };
 	if (action.payload) {
 		for (let propKey in action.payload) {
@@ -79,18 +78,26 @@ function reducer(state, action) {
 			defaultTransaction = defaultRegisterTransaction;
 			break;
 	}
+	let newState = null;
 	switch (actionTypeFrags[0]) {
 		case 'ADD':
+			newState = assign({}, state);
 			newState[action.id] = defaultTransaction;
 			state = assign({}, state, newState);
 			break;
 		case 'SET':
+			newState = assign({}, state);
 			newState[action.id] = assign({}, defaultTransaction, actionTransaction);
 			state = assign({}, state, newState);
 			break;
 		case 'UPDATE':
+			newState = assign({}, state);
 			newState[action.id] = assign({}, state[action.id], actionTransaction);
 			state = assign({}, state, newState);
+			break;
+		case 'REMOVE':
+			state = assign({}, state);
+			delete state[action.id];
 			break;
 	}
 	return state;

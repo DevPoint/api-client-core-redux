@@ -22,7 +22,6 @@ export const defaultView = {
 
 const reducer = (state, action) => {
 	const actionTypeFrags = action.type.split('_');
-	const newState = assign({}, state);
 	const updateView = { viewId: action.id };
 	if (action.payload) {
 		for (let propKey in action.payload) {
@@ -37,18 +36,26 @@ const reducer = (state, action) => {
 			}
 		}
 	}
+	let newState = null;
 	switch (actionTypeFrags[0]) {
 		case 'ADD':
+			newState = assign({}, state);
 			newState[action.id] = defaultView;
 			state = assign({}, state, newState);
 			break;
 		case 'SET':
+			newState = assign({}, state);
 			newState[action.id] = assign({}, defaultView, actionView);
 			state = assign({}, state, newState);
 			break;
 		case 'UPDATE':
+			newState = assign({}, state);
 			newState[action.id] = assign({}, state[action.id], actionView);
 			state = assign({}, state, newState);
+			break;
+		case 'REMOVE':
+			state = assign({}, state);
+			delete state[action.id];
 			break;
 	}
 	return state;
