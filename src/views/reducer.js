@@ -54,12 +54,12 @@ const reducer = (state, action) => {
         switch (actionTypeFrags[0]) {
             case 'ADD':
             case 'SET':
-                updateState = assign({}, state ? state : defaultState);
+                updateState = {};
                 updateState[action.id] = assign({}, defaultView, updateView);
                 state = assign({}, state, updateState);
                 break;
             case 'UPDATE':
-                updateState = assign({}, state, state ? state : defaultView);
+                updateState = {};
                 updateState[action.id] = assign({}, state[action.id], updateView);
                 state = assign({}, state, updateState);
                 break;

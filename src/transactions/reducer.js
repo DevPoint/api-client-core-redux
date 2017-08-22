@@ -115,12 +115,12 @@ function reducer(state, action) {
         switch (actionTypeFrags[0]) {
             case 'ADD':
             case 'SET':
-                updateState = assign({}, state);
+                updateState = {};
                 updateState[action.id] = assign({}, defaultTransaction, updateTransaction);
                 state = assign({}, state, updateState);
                 break;
             case 'UPDATE':
-                updateState = assign({}, state);
+                updateState = {};
                 updateState[action.id] = assign({}, state[action.id], updateTransaction);
                 state = assign({}, state, updateState);
                 break;
