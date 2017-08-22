@@ -20,7 +20,7 @@ export default {
                 },
                 itemIds: [];
             }
-        }
+        };
     },
 
 
@@ -44,7 +44,7 @@ export default {
                 },
                 itemIds: itemIds;
             }
-        }
+        };
     },
 
     loadingFailed: function(nameSpace, viewId, errors, validationErrors) {
@@ -59,7 +59,7 @@ export default {
                 errors: errors,
                 validationErrors: validationErrors
             }
-        }
+        };
     },
 
 };

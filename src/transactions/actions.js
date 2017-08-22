@@ -15,7 +15,7 @@ export default {
                 errors: [],
                 validationErrors: null
             }
-        }
+        };
     },
 
 
@@ -32,7 +32,7 @@ export default {
                 errors: [],
                 validationErrors: null
             }
-        }
+        };
     },
 
     insertFailed: function(nameSpace, transactionId, errors, validationErrors) {
@@ -47,7 +47,7 @@ export default {
                 errors: errors,
                 validationErrors: validationErrors
             }
-        }
+        };
     },
 
     updateStart: function(nameSpace, transactionId, itemId, credentials) {
@@ -64,7 +64,7 @@ export default {
                 errors: [],
                 validationErrors: null
             }
-        }
+        };
     },
 
 
@@ -80,7 +80,7 @@ export default {
                 errors: [],
                 validationErrors: null
             }
-        }
+        };
     },
 
     updateFailed: function(nameSpace, transactionId, errors, validationErrors) {
@@ -95,7 +95,7 @@ export default {
                 errors: errors,
                 validationErrors: validationErrors
             }
-        }
+        };
     },
 
     deleteStart: function(nameSpace, transactionId, itemId) {
@@ -110,7 +110,7 @@ export default {
                 itemId: itemId,
                 errors: [],
             }
-        }
+        };
     },
 
     deleteReady: function(nameSpace, transactionId) {
@@ -124,7 +124,7 @@ export default {
                 failed: false,
                 errors: [],
             }
-        }
+        };
     },
 
     deleteFailed: function(nameSpace, transactionId, errors) {
@@ -138,7 +138,7 @@ export default {
                 failed: true,
                 errors: errors,
             }
-        }
+        };
     },
 
     loginStart: function(nameSpace, transactionId, credentials) {
@@ -155,7 +155,7 @@ export default {
                 errors: [],
                 validationErrors: null
             }
-        }
+        };
     },
 
 
@@ -172,7 +172,7 @@ export default {
                 errors: [],
                 validationErrors: null
             }
-        }
+        };
     },
 
     loginFailed: function(nameSpace, transactionId, errors, validationErrors) {
@@ -187,7 +187,7 @@ export default {
                 errors: errors,
                 validationErrors: validationErrors
             }
-        }
+        };
     },
 
     registerStart: function(nameSpace, transactionId) {
@@ -202,7 +202,7 @@ export default {
                 token: '',
                 errors: [],
             }
-        }
+        };
     },
 
     registerReady: function(nameSpace, transactionId) {
@@ -216,7 +216,7 @@ export default {
                 failed: false,
                 errors: '',
             }
-        }
+        };
     },
 
     registerFailed: function(nameSpace, transactionId, error) {
@@ -230,6 +230,6 @@ export default {
                 failed: true,
                 errors: [error]
             }
-        }
+        };
     },
 };
