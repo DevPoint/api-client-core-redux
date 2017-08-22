@@ -25,7 +25,6 @@ export default {
         };
     },
 
-
     loadingReady: function(nameSpace, viewId, itemsIds) {
         const nameSpacePrefix = (nameSpace) ? '_' + nameSpace : '';
         return {
