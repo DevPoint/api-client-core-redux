@@ -15,7 +15,7 @@ export const defaultView = {
         totalCount: 0,
         errors: []
     },
-    itemIds: itemIds;
+    itemsIds: itemsIds;
     errors: [],
     validationErrors: null
 };
@@ -29,7 +29,7 @@ const reducer = (state, action) => {
                 if (propKey === 'loadingMeta' || propKey === 'validationErrors') {
                     updateView[propKey] = assign({}, action.payload[propKey]);
                 }
-                else if (propKey === 'errors') {
+                else if (propKey === 'errors' || propKey === 'itemsIds') {
                     updateView[propKey] = action.payload[propKey].slice(0);
                 }
                 else {

@@ -18,13 +18,13 @@ export default {
                     totalCount: 0,
                     errors: []
                 },
-                itemIds: [];
+                itemsIds: [];
             }
         };
     },
 
 
-    loadingReady: function(nameSpace, viewId, itemIds) {
+    loadingReady: function(nameSpace, viewId, itemsIds) {
         const nameSpacePrefix = (nameSpace) ? '_' + nameSpace : '';
         return {
             type: nameSpacePrefix . 'UPDATE_VIEW',
@@ -42,7 +42,7 @@ export default {
                     totalCount: loadingMeta.totalCount,
                     errors: []
                 },
-                itemIds: itemIds;
+                itemsIds: itemsIds;
             }
         };
     },
