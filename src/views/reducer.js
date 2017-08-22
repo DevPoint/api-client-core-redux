@@ -30,7 +30,7 @@ const reducer = (state, action) => {
                     updateView[propKey] = assign({}, action.payload[propKey]);
                 }
                 else if (propKey === 'errors') {
-                    updateView[propKey] = action.payload[propKey].slice(0));
+                    updateView[propKey] = action.payload[propKey].slice(0);
                 }
                 else {
                     updateView[propKey] = action.payload[propKey];
