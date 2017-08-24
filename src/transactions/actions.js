@@ -10,8 +10,8 @@ export default {
         return {
             type: nameSpacePrefix . 'SET_TRANSACTION_INSERT',
             id: transactionId,
+            itemType: itemType,
             payload: {
-                itemType: itemType,
                 type: 'insert',
                 ready: false,
                 processing: true,
@@ -64,13 +64,13 @@ export default {
         return {
             type: nameSpacePrefix . 'SET_TRANSACTION_UPDATE',
             id: transactionId,
+            itemType: itemType,
+            itemId: itemId,
             payload: {
-                itemType: itemType,
                 type: 'update',
                 ready: false,
                 processing: true,
                 failed: false,
-                itemId: itemId,
                 credentials: credentials,
                 errors: [],
                 validationErrors: {}
@@ -117,8 +117,8 @@ export default {
         return {
             type: nameSpacePrefix . 'SET_TRANSACTION_DELETE',
             id: transactionId,
+            itemType: itemType,
             payload: {
-                itemType: itemType,
                 type: 'delete',
                 ready: false,
                 processing: true,
@@ -166,8 +166,8 @@ export default {
         return {
             type: nameSpacePrefix . 'SET_TRANSACTION_LOGIN',
             id: transactionId,
+            itemType: itemType,
             payload: {
-                itemType: itemType,
                 type: 'login',
                 ready: false,
                 processing: true,
