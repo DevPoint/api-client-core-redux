@@ -5,19 +5,19 @@ export default {
      * Transaction INSERT actions
      */
 
-    insertStart: function(nameSpace, transactionId, itemType, credentials) {
+    insertStart: function(nameSpace, transactionId, itemType, data) {
         const nameSpacePrefix = (nameSpace) ? '_' + nameSpace : '';
         return {
             type: nameSpacePrefix . 'SET_TRANSACTION_INSERT',
             id: transactionId,
             itemType: itemType,
+            data: data,
             payload: {
                 type: 'insert',
                 ready: false,
                 processing: true,
                 failed: false,
                 itemId: null,
-                credentials: credentials,
                 errors: [],
                 validationErrors: {}
             }
@@ -59,19 +59,19 @@ export default {
      * Transaction UPDATE actions
      */
 
-    updateStart: function(nameSpace, transactionId, itemType, itemId, credentials) {
+    updateStart: function(nameSpace, transactionId, itemType, itemId, data) {
         const nameSpacePrefix = (nameSpace) ? '_' + nameSpace : '';
         return {
             type: nameSpacePrefix . 'SET_TRANSACTION_UPDATE',
             id: transactionId,
             itemType: itemType,
             itemId: itemId,
+            data: data,
             payload: {
                 type: 'update',
                 ready: false,
                 processing: true,
                 failed: false,
-                credentials: credentials,
                 errors: [],
                 validationErrors: {}
             }
@@ -167,13 +167,13 @@ export default {
             type: nameSpacePrefix . 'SET_TRANSACTION_LOGIN',
             id: transactionId,
             itemType: itemType,
+            credentials: credentials,
             payload: {
                 type: 'login',
                 ready: false,
                 processing: true,
                 failed: false,
                 userId: null,
-                credentials: credentials,
                 errors: [],
                 validationErrors: {}
             }
@@ -216,13 +216,14 @@ export default {
      * Transaction REGISTER actions
      */
 
-    registerStart: function(nameSpace, transactionId, itemType) {
+    registerStart: function(nameSpace, transactionId, itemType, credentials) {
         const nameSpacePrefix = (nameSpace) ? '_' + nameSpace : '';
         return {
             type: nameSpacePrefix . 'REGISTER_TRANSACTION_REGISTER',
             id: transactionId,
+            itemType: itemType,
+            credentials: credentials,
             payload: {
-                itemType: itemType,
                 type: 'register',
                 ready: false,
                 processing: true,
