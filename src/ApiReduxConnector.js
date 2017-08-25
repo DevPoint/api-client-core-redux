@@ -7,9 +7,7 @@ class ApiReduxConnector {
         this._api = api;
         this._store = null;
         this._reducer = this._createReducer(nameSpace);
-        this._cacheMapListener = this._cacheMapListener.bind(this);
-        this._transactionMapListener = this._transactionMapListener.bind(this);
-        this._viewMapListener = this._viewMapListener.bind(this);
+        this._listener = this._listener.bind(this);
     }
 
     _createReducer(nameSpace) {
@@ -72,41 +70,38 @@ class ApiReduxConnector {
         };
     }
 
-    _cacheMapListener() {
+    _listener() {
         const state = this._store.getState();
 
-        // TODO BUILD cache map state
+        // TODO build new cache state
 
-    }
+        // TODO build new transactions state
 
-    _transactionMapListener() {
-        const state = this._store.getState();
+        // TODO build new views state
 
-        // TODO BUILD transaction map state
+        // TODO update store state
 
-    }
+        // TODO clear cache changes
 
-    _viewMapListener() {
-        const state = this._store.getState();
+        // TODO clear transactions changes
 
-        // TODO BUILD view map state
-
+        // TODO clear views changes
     }
 
     _addListeners() {
         for (let itemType in this._api.getCacheItemTypes()) {
-            this._api.cache(itemType).addListener(this._cacheMapListener);
+            this._api.cache(itemType).addListener(this._listener);
         }
-        this._api.transactions().addListener(this._transactionMapListener);
-        this._api.views().addListener(this._viewMapListener);
+        this._api.transactions().addListener(this._listener);
+        this._api.views().addListener(this._listener);
     }
 
     _removeListeners() {
         for (let itemType in this._api.getCacheItemTypes()) {
-            this._api.cache(itemType).removeListener(this._cacheMapListener);
+            this._api.cache(itemType).removeListener(this._listener);
         }
-        this._api.transactions().removeListener(this._transactionMapListener);
-        this._api.views().removeListener(this._viewMapListener);
+        this._api.transactions().removeListener(this._listener);
+        this._api.views().removeListener(this._listener);
     }
 
     reducer() {
