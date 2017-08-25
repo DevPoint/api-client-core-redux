@@ -75,15 +75,21 @@ class ApiReduxConnector {
     _cacheMapListener() {
         const state = this._store.getState();
 
+        // TODO BUILD cache map state
+
     }
 
     _transactionMapListener() {
         const state = this._store.getState();
 
+        // TODO BUILD transaction map state
+
     }
 
     _viewMapListener() {
         const state = this._store.getState();
+
+        // TODO BUILD view map state
 
     }
 
