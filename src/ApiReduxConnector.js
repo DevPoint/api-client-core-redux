@@ -76,16 +76,14 @@ class ApiReduxConnector {
         // build new cache state
         const updateCacheState = {};
         for (let itemType in this._api.getCacheItemTypes()) {
-            if (this._api.cache(itemType).changed) {
-                const cacheMap = this._api.cache(itemType);
-                if (cacheMap.changed) {
-                    const updateCacheMapState = {};
-                    const entriesAreObservables = cacheMap.entriesAreObservables;
-                    for (let itemId in cacheMap.ids()) {
-                        const entry = cacheMap.find(itemId);
-                        if (!entriesAreObservables || entry.changed) {
+            const cacheMap = this._api.cache(itemType);
+            if (cacheMap.changed) {
+                const updateCacheMapState = {};
+                const entriesAreObservables = cacheMap.entriesAreObservables;
+                for (let itemId in cacheMap.ids()) {
+                    const entry = cacheMap.find(itemId);
+                    if (!entriesAreObservables || entry.changed) {
 
-                        }
                     }
                 }
             }
@@ -93,28 +91,24 @@ class ApiReduxConnector {
 
         // build new transactions state
         const updateTransactionState = {};
-        if (this._api.transactions().changed) {
-            const transactionMap = this._api.transactions();
-            if (transactionMap.changed) {
-                for (let transactionId in transactionMap.ids()) {
-                    const transaction = transactionMap.find(transactionId);
-                    if (transaction.changed) {
+        const transactionMap = this._api.transactions();
+        if (transactionMap.changed) {
+            for (let transactionId in transactionMap.ids()) {
+                const transaction = transactionMap.find(transactionId);
+                if (transaction.changed) {
 
-                    }
                 }
             }
         }
 
         // build new views state
         const updateViewState = {};
-        if (this._api.views().changed) {
-            const viewMap = this._api.views();
-            if (viewMap.changed) {
-                for (let viewId in viewMap.ids()) {
-                    const view = viewMap.find(viewId);
-                    if (view.changed) {
+        const viewMap = this._api.views();
+        if (viewMap.changed) {
+            for (let viewId in viewMap.ids()) {
+                const view = viewMap.find(viewId);
+                if (view.changed) {
 
-                    }
                 }
             }
         }
