@@ -78,8 +78,8 @@ class ApiReduxConnector {
         for (let itemType in this._api.getCacheItemTypes()) {
             if (this._api.cache(itemType).changed) {
                 const updateCacheMapState = {};
-                const entriesAreObservables = cacheMap.entriesAreObservables;
                 const cacheMap = this._api.cache(itemType);
+                const entriesAreObservables = cacheMap.entriesAreObservables;
                 for (let itemId in cacheMap.ids()) {
                     const entry = cacheMap.find(itemId);
                     if (!entriesAreObservables || entry.changed) {
