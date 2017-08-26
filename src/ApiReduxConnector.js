@@ -91,12 +91,14 @@ class ApiReduxConnector {
         // build new transactions state
         const updateTransactionState = {};
         if (this._api.transactions().changed) {
+            const transactionMap = this._api.transactions();
 
         }
 
         // build new views state
         const updateViewState = {};
         if (this._api.views().changed) {
+            const viewMap = this._api.views();
 
         }
 
