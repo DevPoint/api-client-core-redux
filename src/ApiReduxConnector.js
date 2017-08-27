@@ -73,10 +73,12 @@ class ApiReduxConnector {
 
     _listener() {
         
+        // retrieve current state
         const state = this._store.getState();
 
         // build update cache state
         const updateCacheState = {};
+        let updateCacheMapCount = 0;
         for (let itemType in this._api.getCacheItemTypes()) {
             const cacheMap = this._api.cache(itemType);
             if (cacheMap.changed) {
@@ -92,12 +94,22 @@ class ApiReduxConnector {
                     }
                 }
                 updateCacheState[itemType] = updateCacheMapState;
+                updateCacheMapCount += 1;
+            }
+            else {
+                updateCacheState[itemType] = state.cache[itemType];
             }
         }
 
+        // optimization: if none of the cache maps have changed
+        // use last cache state as a whole
+        if (!updateCacheMapCount) {
+            updateCacheState = state.cache;
+        }
+
         // build update transactions state
-        const updateTransactionState = {};
         const transactionMap = this._api.transactions();
+        const updateTransactionState = !transactionMap.changed ? state.transactions : {};
         if (transactionMap.changed) {
             for (let transactionId in transactionMap.ids()) {
                 const transaction = transactionMap.find(transactionId);
@@ -112,8 +124,8 @@ class ApiReduxConnector {
         }
 
         // build update views state
-        const updateViewState = {};
         const viewMap = this._api.views();
+        const updateViewState = !viewMap.changed ? state.views : {};
         if (viewMap.changed) {
             for (let viewId in viewMap.ids()) {
                 const view = viewMap.find(viewId);
