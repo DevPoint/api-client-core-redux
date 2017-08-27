@@ -81,8 +81,9 @@ class ApiReduxConnector {
         let updateCacheMapCount = 0;
         for (let itemType in this._api.getCacheItemTypes()) {
             const cacheMap = this._api.cache(itemType);
+            const updateCacheMapState = !cacheMap.changed ? state.cache[itemType] : {};
             if (cacheMap.changed) {
-                const updateCacheMapState = {};
+                updateCacheMapCount += 1;
                 for (let itemId in cacheMap.ids()) {
                     const entry = cacheMap.find(itemId);
                     if (entry.changed) {
@@ -93,12 +94,8 @@ class ApiReduxConnector {
                         updateCacheMapState[itemId] = state.cache[itemType][itemId];
                     }
                 }
-                updateCacheState[itemType] = updateCacheMapState;
-                updateCacheMapCount += 1;
             }
-            else {
-                updateCacheState[itemType] = state.cache[itemType];
-            }
+            updateCacheState[itemType] = updateCacheMapState;
         }
 
         // optimization: if none of the cache maps have changed
