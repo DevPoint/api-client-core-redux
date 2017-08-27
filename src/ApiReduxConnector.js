@@ -6,6 +6,7 @@ class ApiReduxConnector {
     constructor(api, nameSpace) {
         this._api = api;
         this._store = null;
+        this._nameSpace = nameSpace;
         this._reducer = this._createReducer(nameSpace);
         this._listener = this._listener.bind(this);
     }
@@ -71,55 +72,71 @@ class ApiReduxConnector {
     }
 
     _listener() {
+        
         const state = this._store.getState();
 
-        // build new cache state
+        // build update cache state
         const updateCacheState = {};
         for (let itemType in this._api.getCacheItemTypes()) {
             const cacheMap = this._api.cache(itemType);
             if (cacheMap.changed) {
                 const updateCacheMapState = {};
-                const entriesAreObservables = cacheMap.entriesAreObservables;
                 for (let itemId in cacheMap.ids()) {
                     const entry = cacheMap.find(itemId);
-                    if (!entriesAreObservables || entry.changed) {
-
+                    if (entry.changed) {
+                        updateCacheMapState[itemId] = entry.toObject();
+                    }
+                    else {
+                        // TODO: add exception if itemId could not be found in state
+                        updateCacheMapState[itemId] = state.cache[itemType][itemId];
                     }
                 }
+                updateCacheState[itemType] = updateCacheMapState;
             }
         }
 
-        // build new transactions state
+        // build update transactions state
         const updateTransactionState = {};
         const transactionMap = this._api.transactions();
         if (transactionMap.changed) {
             for (let transactionId in transactionMap.ids()) {
                 const transaction = transactionMap.find(transactionId);
                 if (transaction.changed) {
-
+                    updateTransactionState[transactionId] = transaction.toObject();
+                }
+                else {
+                    // TODO: add exception if transactionId could not be found in state
+                    updateTransactionState[transactionId] = state.transactions[transactionId];
                 }
             }
         }
 
-        // build new views state
+        // build update views state
         const updateViewState = {};
         const viewMap = this._api.views();
         if (viewMap.changed) {
             for (let viewId in viewMap.ids()) {
                 const view = viewMap.find(viewId);
                 if (view.changed) {
-
+                    updateViewState[viewId] = view.toObject();
+                }
+                else {
+                    // TODO: add exception if viewId could not be found in state
+                    updateViewState[viewId] = state.views[viewId];
                 }
             }
         }
 
-        // TODO update store state
-
-        // TODO clear cache changes
-
-        // TODO clear transactions changes
-
-        // TODO clear views changes
+        // dispatch store state update
+        const actionType = this._nameSpace ? this._nameSpace + '_UPDATE' : 'UPDATE',
+        this._store.dispatch(state, {
+            type: actionType;
+            payload: {
+                cache: updateCacheState,
+                transactions: updateTransactionState,
+                views: updateViewState
+            }
+        });
     }
 
     _addListeners() {
